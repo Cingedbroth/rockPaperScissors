@@ -1,23 +1,74 @@
-let options = ["Rock", " Paper", " Scissors"];
-let computerSelection = options[Math.floor(Math.random()*3)];
-let playerSelection;
-do {
-playerSelection = prompt("Which path shall you choose? " + options);
-} while (options.indexOf(playerSelection)<0);
-let result = "You: " + playerSelection + ", Computer: " + computerSelection + ".";
-if (playerSelection === computerSelection){
-    result += " No One Wins This Round";
-} else {
-    let victory = " You are most thoughtful, my liege";
-    if (playerSelection === "Rock" && computerSelection === "Scissors"){
-        result += victory;
-    } else if (playerSelection === "Paper" && computerSelection === "Rock"){
-        result += victory;
-    }else if (playerSelection === "Scissors" && computerSelection === "Paper"){
-        result += victory;
-    }else {
-        result += " The result of losing is Death";
+function computerPlay(){
+    const options = ["rock", "paper", "scissors"];
+    let computerSelection = options[Math.floor(Math.random()*3)];
+    return computerSelection;
+}
+
+
+
+function playRound(playerSelection, computerSelection){
+    if (playerSelection === "rock" && computerSelection === "rock"){
+        return("tie");
+    } else if (playerSelection === "rock" && computerSelection === "paper"){
+        return("lose");
+    } else if (playerSelection === "rock" && computerSelection === "scissors"){
+        return("win");
+    } else if (playerSelection === "paper" && computerSelection === "rock"){
+        return("win");
+    } else if (playerSelection === "paper" && computerSelection === "paper"){
+        return("tie");
+    } else if (playerSelection === "paper" && computerSelection === "scissors"){
+        return("lose");
+    } else if (playerSelection === "scissors" && computerSelection === "rock"){
+        return("lose");
+    } else if (playerSelection === "scissors" && computerSelection === "paper"){
+        return("win");
+    } else if (playerSelection === "scissors" && computerSelection === "scissors"){
+        return("tie");
     }
 }
 
-console.log(result);
+function game(){
+    let playerScore = 0;
+    let compScore = 0;
+
+    do {
+        let playerSelection = prompt("Choose your weapon: Rock, Paper, or Scissors");
+        let computerSelection = computerPlay();
+
+        if (playerSelection === null);
+            return;
+    switch (playRound(playerSelection, computerSelection)) {
+        case "tie":
+            alert("you and your opponent both chose " + computerSelection + ". It's a tie!");
+            console.log("player score " + playerScore);
+            console.log("Computer score " + compScore);
+        break;
+        case "win":
+            playerScore ++;
+            alert(`You chose ${playerSelection} and have conquered the ${computerSelection}!`);
+            console.log("player score " + playerScore);
+            console.log("Computer score " + compScore);
+        break;
+        case "lose":
+            compScore ++;
+            alert(`Your ${playerSelection} experienced defeat to a ${computerSelection}`);
+            console.log("player score " + playerScore);
+            console.log("Computer score " + compScore);
+        break;
+        default:
+            alert("Where is your weapon? You must choose Rock, Paper, or Scissors");
+            console.log("Player input invalid");
+        }
+    } while (!(playerScore === 3 || compScore === 3));
+
+if (playerScore > compScore) {
+    alert("You are the reigning Champion!!");
+    console.log("Human wins");
+}else if (playerScore < compScore){
+    alert("You fought many battles, but ultimately lost the war");
+    console.log("computer wins");
+}
+}
+
+game();
