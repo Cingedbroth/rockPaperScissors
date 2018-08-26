@@ -7,6 +7,12 @@ function iSuspectToBeLoopingInfititely() {
   if (calls > 100) { debugger; }
 }
 
+let resultsDiv = document.getElementById("results");
+   
+let elPlayerScore = document.createElement("p");
+    document.resultsDiv.appendChild(elPlayerScore);
+let elCompScore = document.createElement("p");
+    document.resultsDiv.appendChild(elCompScore);
 
 function computerPlay(){
     const options = ["rock", "paper", "scissors"];
@@ -48,7 +54,7 @@ function game(playerSelection){
     switch (playRound(playerSelection, computerSelection)) {
         case "tie":
             alert("you and your opponent both chose " + computerSelection + ". It's a tie!");
-            console.log("player score " + playerScore);
+            let elPlayerScore = "Player Score " + playerScore;
             console.log("Computer score " + compScore);
         break;
         case "win":
@@ -63,9 +69,9 @@ function game(playerSelection){
             console.log("player score " + playerScore);
             console.log("Computer score " + compScore);
         }
-    }
-}
-function winner(){
+    } while (!(playerScore === 3 || compScore === 3));
+
+
     if (playerScore > compScore) {
         alert("You are the reigning Champion!!");
         console.log("Human wins");
@@ -90,5 +96,6 @@ let scissorBtn = document.getElementById("scissors");
     scissorBtn.addEventListener("click", function(){
         game("scissors");
     }, false);
+
 
 

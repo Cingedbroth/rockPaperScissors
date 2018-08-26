@@ -1,3 +1,9 @@
+let calls = 0;
+function iSuspectToBeLoopingInfititely() {
+  calls += 1;
+  if (calls > 100) { debugger; }
+}
+
 function computerPlay(){
     const options = ["rock", "paper", "scissors"];
     let computerSelection = options[Math.floor(Math.random()*3)];
@@ -71,4 +77,21 @@ if (playerScore > compScore) {
 }
 }
 
-game();
+
+let rockBtn = document.getElementById("rock");
+    rockBtn.addEventListener("click", function() {
+        playerSelection = "rock";
+        game("rock");
+    }, false);
+let paperBtn = document.getElementById("paper");
+    paperBtn.addEventListener("click", function(){
+        playerSelection = "paper";
+        game("paper");
+    }, false);
+let scissorBtn = document.getElementById("scissors");
+    scissorBtn.addEventListener("click", function(){
+        playerSelection = "scissors";
+        game("scissors");
+    }, false);
+
+
